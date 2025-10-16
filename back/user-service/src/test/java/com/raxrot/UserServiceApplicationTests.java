@@ -1,4 +1,4 @@
-package com.raxrot.user_service;
+package com.raxrot;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

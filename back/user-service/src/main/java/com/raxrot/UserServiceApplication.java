@@ -1,4 +1,4 @@
-package com.raxrot.user_service;
+package com.raxrot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
