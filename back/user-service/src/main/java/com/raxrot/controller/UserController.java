@@ -1,5 +1,6 @@
 package com.raxrot.controller;
 
+import com.raxrot.exception.UserException;
 import com.raxrot.model.User;
 import com.raxrot.repository.UserRepository;
 import jakarta.validation.Valid;
@@ -32,14 +33,14 @@ public class UserController {
         if (userOpt.isPresent()) {
             return userOpt.get();
         }
-        throw new Exception("User not found");
+        throw new UserException("User not found");
     }
 
     @PutMapping("/api/users/{id}")
     public User updateUser(@PathVariable("id") Long id,@Valid @RequestBody User user) throws Exception {
         Optional<User> userOpt = userRepository.findById(id);
         if (userOpt.isEmpty()) {
-            throw new Exception("User not found");
+            throw new UserException("User not found");
         }
         else{
             User existingUser = userOpt.get();
@@ -57,7 +58,7 @@ public class UserController {
         if (userOpt.isPresent()) {
             userRepository.deleteById(userOpt.get().getId());
         }else{
-            throw new Exception("User not found");
+            throw new UserException("User not found");
         }
         return "User deleted";
     }
