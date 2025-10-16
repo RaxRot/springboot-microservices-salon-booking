@@ -2,6 +2,7 @@ package com.raxrot.controller;
 
 import com.raxrot.model.User;
 import com.raxrot.repository.UserRepository;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public class UserController {
     }
 
     @PostMapping("/api/users")
-    public User createUser(@RequestBody User user) {
+    public User createUser(@Valid @RequestBody User user) {
         return userRepository.save(user);
     }
 
@@ -35,7 +36,7 @@ public class UserController {
     }
 
     @PutMapping("/api/users/{id}")
-    public User updateUser(@PathVariable("id") Long id, @RequestBody User user) throws Exception {
+    public User updateUser(@PathVariable("id") Long id,@Valid @RequestBody User user) throws Exception {
         Optional<User> userOpt = userRepository.findById(id);
         if (userOpt.isEmpty()) {
             throw new Exception("User not found");
